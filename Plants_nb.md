@@ -319,8 +319,9 @@ ggplot(prob_df, aes(x = State, y = Cluster, fill = Probability)) +
   )
 ```
 
-![](unnamed-chunk-7-1.png) The
-heat map illustrates how clustering reveals the geographic structure of
+![](unnamed-chunk-7-1.png) 
+
+The heat map illustrates how clustering reveals the geographic structure of
 the states; the closer two states are to each other geographically, the
 more similar their colors/probabilities are. To better visualize the
 relationship between the proximity of states and their respective
