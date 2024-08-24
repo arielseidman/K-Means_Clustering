@@ -85,7 +85,7 @@ plot(k_range, wss, type = "b", pch = 19, frame = FALSE,
      main = "Elbow Method for Optimal k")
 ```
 
-![](Plants_nb_files/figure-markdown_github/unnamed-chunk-2-1.png)
+![](unnamed-chunk-2-1.png)
 
 The Elbow Method plot shows somewhat of a sharp bend at k=2. I will
 compare the results of the Elbow Method with results from the Silhouette
@@ -130,7 +130,7 @@ plot(k_range, sil_width, type = "b", pch = 19, frame = FALSE,
      main = "Silhouette Method for Optimal K")
 ```
 
-![](Plants_nb_files/figure-markdown_github/unnamed-chunk-3-1.png)
+![](unnamed-chunk-3-1.png)
 
 ``` r
 optimal_k <- k_range[which.max(sil_width)]
@@ -207,7 +207,7 @@ ggplot(pca_data, aes(x = PC1, y = PC2, color = Cluster)) +
   theme_minimal()
 ```
 
-![](Plants_nb_files/figure-markdown_github/unnamed-chunk-5-1.png)
+![](unnamed-chunk-5-1.png)
 
 The plot indicates that the data set does not have two clusters that are
 very separated, as it appears more like a single group of points divided
@@ -319,7 +319,7 @@ ggplot(prob_df, aes(x = State, y = Cluster, fill = Probability)) +
   )
 ```
 
-![](Plants_nb_files/figure-markdown_github/unnamed-chunk-7-1.png) The
+![](unnamed-chunk-7-1.png) The
 heat map illustrates how clustering reveals the geographic structure of
 the states; the closer two states are to each other geographically, the
 more similar their colors/probabilities are. To better visualize the
@@ -327,7 +327,7 @@ relationship between the proximity of states and their respective
 colors, let’s view the same information in the form of two choropleth
 maps (one map for each cluster).
 
-### Using Choropleth Maps for Plants Data Set3
+### Using Choropleth Maps for Plants Data Set
 
 Each vector in 69-dimensional space corresponds to a cluster. Each
 element of the vector corresponds to one of the 69 states. The value of
@@ -376,7 +376,7 @@ write.csv(tableau_data, "/Users/arielseidman/Desktop/plants/tableau_data.csv",
 ```
 
 ![Legend, C1, &
-C2](/Users/arielseidman/Desktop/plants/Plants_Images/plants_image.png)
+C2](plants_image.png)
 
 ### Results
 
