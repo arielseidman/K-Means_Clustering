@@ -1,1 +1,1 @@
-# [See PDF version for visualizations](Plants_nb.pdf)
+# [For visualizations, see PDF version](Plants_nb.pdf)
