@@ -8,9 +8,11 @@ between the distribution of the plants and the geography of the states
 in the data set.
 
 The data set comprises 34,781 plant genera and species, each associated
-with a list of states or provinces where the plant is found. Each record
-contains the plant’s name along with the states it inhabits, identified
-by abbreviations.
+with a list of states or provinces where the plant is found. The 
+dataset contains data from the 50 states in the United States, in
+addition to the Candian provinces, as well as other territories of 
+North America. Each record contains the plant’s name along with the 
+states it inhabits, identified by abbreviations.
 
 ### Loading and Transforming Data Into Presence-Absence Matrix
 
