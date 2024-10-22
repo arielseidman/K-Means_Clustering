@@ -4,15 +4,20 @@ set](https://archive.ics.uci.edu/dataset/180/plants), uncovering
 geographical structures of North America that are not immediately
 apparent from the raw data. I generate visualizations of the clustering
 results in R and Tableau. My analysis illustrates the relationship
-between the distribution of the plants and the geography of the states
+between the distribution of the plants and the geography of the territories
 in the data set.
 
 The data set comprises 34,781 plant genera and species, each associated
-with a list of states or provinces where the plant is found. The 
-dataset contains data from the 50 states in the United States, in
-addition to the Candian provinces, as well as other territories of 
-North America. Each record contains the plant’s name along with the 
-states it inhabits, identified by abbreviations.
+with a list of territories where the plant is found. The dataset 
+contains data from the 50 states in the United States, the Candian 
+provinces, as well as other territories of North America. Each record 
+contains the plant’s name along with the territories it inhabits, 
+identified by abbreviations.
+
+In this
+report, the words "state" and "territory" are used interchangably 
+in variable names and names of other items in the code, as well as in text found in data
+visualizations. The words "state" and "territory" are used interchangably for brevity.
 
 ### Loading and Transforming Data Into Presence-Absence Matrix
 
@@ -24,7 +29,7 @@ data_file <- "/Users/arielseidman/Desktop/plants/plants.data"
 raw_data <- readLines(data_file)
 raw_data <- iconv(raw_data, from = "UTF-8", to = "ASCII//TRANSLIT", sub = "")
 
-# Below are the 69 unique "state" abbreviations in the data set
+# Below are the 69 unique territory abbreviations in the data set
 state_names <- c("al", "ak", "ar", "az", "ca", "co", "ct",
             "de", "dc", "fl", "ga", "hi", "id", "il", 
             "in", "ia", "ks", "ky", "la", "me", "md", 
@@ -36,10 +41,10 @@ state_names <- c("al", "ak", "ar", "az", "ca", "co", "ct",
             "nb", "lb", "nf", "nt", "ns", "nu", "on", 
             "Prince Edward Island", "qc", "sk", "yt", "dengl", "fraspm")
 
-# Initialize a matrix of zeros with 1 row per plant and 1 column per state
+# Initialize a matrix of zeros with 1 row per plant and 1 column per territory
 presence_matrix <- matrix(0, nrow = length(raw_data), ncol = length(state_names))
 
-# Name the columns of the matrix using state names
+# Name the columns of the matrix using territory names
 colnames(presence_matrix) <- state_names
 
 # Populate the matrix
@@ -53,7 +58,7 @@ for (i in 1:length(raw_data)) {
   # Trim white space and ensure consistent capitalization
   plant_states <- trimws(plant_states)
   
-  # Filter out any states that are not in the state_names list
+  # Filter out any territories that are not in the state_names list
   valid_states <- plant_states[plant_states %in% state_names]
   
   # Mark the corresponding columns with 1's
@@ -165,8 +170,8 @@ PCA is a dimensionality reduction technique that transforms the data
 into a new set of uncorrelated variables called principal components
 (PCs). These components capture the maximum variance in the data. In
 order to visualize the clustering results in 2D, I use PCA to reduce
-number of dimensions from 69 (there are 69 states, and there is 1
-dimension per state) to 2.
+number of dimensions from 69 (there are 69 territories, and there is 1
+dimension per territory) to 2.
 
 ``` r
 # Identify columns with zero variance
@@ -219,11 +224,11 @@ into two pieces rather than distinct, isolated clusters.
 
 In this k-means clustering, we have a vector in 69-dimensional space for
 each cluster. Each element/dimension of a vector corresponds to one of
-the 69 states. Each element of the vector can be interpreted as the
+the 69 territories. Each element of the vector can be interpreted as the
 probability that a randomly selected plant from that cluster is found in
-the corresponding state. I will create a probability matrix which will
+the corresponding territory. I will create a probability matrix which will
 show all of the information that the vectors contain; the matrix will
-show one probability value per state per cluster. The purpose of
+show one probability value per territory per cluster. The purpose of
 creating the matrix from the vectors is to put the information from the
 vectors in a format that is more suitable for building visualizations.
 
@@ -253,25 +258,25 @@ kmeans_result <- kmeans(presence_matrix, centers = 2, nstart = 25, iter.max = 10
 # Extract the cluster assignments from kmeans_result
 cluster_assignments <- kmeans_result$cluster
 
-# Number of clusters and states
+# Number of clusters and territories
 num_clusters <- 2
 num_states <- ncol(presence_matrix)
 
-# Initialize a matrix to store probabilities (clusters x states)
+# Initialize a matrix to store probabilities (clusters x territories)
 prob_matrix <- matrix(0, nrow = num_clusters, ncol = num_states)
 colnames(prob_matrix) <- colnames(presence_matrix)
 rownames(prob_matrix) <- paste("Cluster", 1:num_clusters)
 
-# Calculate the probability of each state having a "1" in each cluster
+# Calculate the probability of each territory having a "1" in each cluster
 for (cluster in 1:num_clusters) {
   # Get the rows of the presence_matrix corresponding to the current cluster
   cluster_rows <- presence_matrix[cluster_assignments == cluster, ]
   
-  # Calculate the probability of each state having a "1" in the current cluster
+  # Calculate the probability of each territory having a "1" in the current cluster
   prob_matrix[cluster, ] <- colMeans(cluster_rows)
 }
 
-# Calculate the overall average probability across all clusters and states
+# Calculate the overall average probability across all clusters and territories
 average_probability <- mean(presence_matrix)
 
 # Output the result
@@ -324,21 +329,21 @@ ggplot(prob_df, aes(x = State, y = Cluster, fill = Probability)) +
 ![](unnamed-chunk-7-1.png) 
 
 The heat map illustrates how clustering reveals the geographic structure of
-the states; the closer two states are to each other geographically, the
+the territories; the closer two territories are to each other geographically, the
 more similar their colors/probabilities are. To better visualize the
-relationship between the proximity of states and their respective
+relationship between the proximity of territories and their respective
 colors, let’s view the same information in the form of two choropleth
 maps (one map for each cluster).
 
 ### Using Choropleth Maps for Plants Data Set
 
 Each vector in 69-dimensional space corresponds to a cluster. Each
-element of the vector corresponds to one of the 69 states. The value of
+element of the vector corresponds to one of the 69 territories. The value of
 each element is the probability that a plant chosen from that cluster at
-random is from that state.
+random is from that territory.
 
 We can represent each cluster with a choropleth map by coloring each
-state on the map according to that state’s probability value.
+territory on the map according to that territory’s probability value.
 
 ### Transforming Probability Matrix for Choropleth Maps
 
@@ -353,7 +358,7 @@ prob_df <- as.data.frame(prob_matrix)
 # Add cluster names as a column
 prob_df$Cluster <- rownames(prob_matrix)
 
-# Define a vector that maps each state to its respective country
+# Define a vector that maps each territory to its respective country
 country_mapping <- c(
   "ab" = "Canada", "bc" = "Canada", "mb" = "Canada", "nb" = "Canada", "lb" = "Canada",
   "nf" = "Canada", "nt" = "Canada", "ns" = "Canada", "nu" = "Canada", "on" = "Canada",
@@ -361,11 +366,11 @@ country_mapping <- c(
   "dengl" = "Denmark", "fraspm" = "France"
 )
 
-# Default all states to "United States" first
+# Default all territories to "United States" first
 state_countries <- rep("United States", ncol(prob_df) - 1)
 names(state_countries) <- colnames(prob_df)[-ncol(prob_df)]
 
-# Overwrite specific states with their mapped countries
+# Overwrite specific territories with their mapped countries
 state_countries[names(country_mapping)] <- country_mapping
 
 # Reshape the data into long format for Tableau
@@ -384,23 +389,25 @@ C2](plants_image.png)
 ### Results
 
 White on the maps represents the average probability of a random plant
-being found in a random state, which is about 0.1248858.
+being found in a random territory, which is about 0.1248858.
 
 The choropleth maps show blue areas, orange areas, and white areas
 connecting them. This color gradient appears because plant distributions
 typically change gradually over large geographic areas.
 
-The color transitions are not perfect gradients. Since the data set
-categorizes plant data by state, the colors vary state-by-state. If we
-had more specific location data (for example, plant data by county), the
-color transitions would be smoother. However, even with this state-level
-data, neighboring states still tend to have similar colors.
+The color transitions are not perfect gradients. Since the data set 
+mostly categorizes plant data by state or province, the colors vary
+state-by-state, or province-by-province, etc. If we had location data
+that is more specific than states and provinces (for example, plant
+data by county), the color transitions would be smoother. However,
+even with this state-level and province-level data, neighboring
+states/provinces still tend to have similar colors.
 
-The color of each state represents the likelihood that a randomly
-selected plant from that cluster is from that state. If a state is blue,
-plants from that cluster are more likely to be found there than plants
-on average. Conversely, if a state is orange, plants in that cluster are
-less likely to be found there.
+The color of each territory represents the likelihood that a randomly
+selected plant from that cluster is from that territory. If a 
+territory is blue, plants from that cluster are more likely to be
+found there than plants on average. Conversely, if a territory is 
+orange, plants in that cluster are less likely to be found there.
 
 Cluster 1 is mostly orange with some blue in the West and Southwest
 United States, while Cluster 2 is mostly blue with some orange in
@@ -409,9 +416,9 @@ the West and Southwest United States than in other areas, while plants
 in Cluster 2 are less concentrated in Nunavut than in other areas.
 
 The k-means algorithm partially uncovers the geographic relationships
-between the states: although the data set lacks information about which
-states border each other, this information is revealed by the plant
-distributions across states and the clusters identified by k-means.
+between the territories: although the data set lacks information about which
+territories border each other, this information is revealed by the plant
+distributions across territories and the clusters identified by k-means.
 
 The main takeaway is that experimentation is important for finding the
 most suitable visual representation of a data set to uncover patterns
