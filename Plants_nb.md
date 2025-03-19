@@ -54,7 +54,7 @@ for (i in 1:length(raw_data)) {
   # Extract the region names (discard the first element which is the plant name)
   plant_states <- elements[-1]
   
-  # Trim white space and ensure consistent capitalization
+  # Trim white space
   plant_states <- trimws(plant_states)
   
   # Filter out any regions that are not in the state_names list
