@@ -16,8 +16,7 @@ identified by abbreviations.
 
 In this report, the words "state" and "region" are used interchangably 
 in variable names and names of other items in the code, as well as in text
-found in data visualizations. The words "state" and "region" are used 
-interchangably for brevity.
+found in data visualizations.
 
 ### Loading and Transforming Data Into Presence-Absence Matrix
 
