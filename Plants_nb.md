@@ -180,7 +180,6 @@ zero_variance_cols <- apply(presence_matrix, 2, var) == 0
 # all 1s)
 
 # Such columns do not contribute to distinguishing between different clusters
-# because they don't vary across the data
 
 # Remove these columns from the matrix
 filtered_matrix <- presence_matrix[, !zero_variance_cols]
