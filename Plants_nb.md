@@ -214,9 +214,9 @@ ggplot(pca_data, aes(x = PC1, y = PC2, color = Cluster)) +
 
 ![](unnamed-chunk-5-1.png)
 
-The plot indicates that the data set does not have two clusters that are
-very separated, as it appears more like a single group of points divided
-into two pieces rather than distinct, isolated clusters.
+The plot indicates that the data set does not contain two clearly
+distinct clusters, as it looks more like a single group of points
+split into two parts rather than distinct, isolated clusters.
 
 ### Probability Matrix
 
