@@ -201,7 +201,7 @@ pca_result <- prcomp(filtered_matrix, scale. = TRUE)
 # Create a data frame with PCA results and cluster assignments
 pca_data <- data.frame(pca_result$x[, 1:2], Cluster = as.factor(kmeans_result$cluster))
 
-# Plot the PCA results with customized colors for clusters
+# Plot the PCA results
 library(ggplot2)
 ggplot(pca_data, aes(x = PC1, y = PC2, color = Cluster)) +
   geom_point(size = 2) +
