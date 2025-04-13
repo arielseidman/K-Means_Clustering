@@ -298,7 +298,7 @@ prob_df <- as.data.frame(prob_matrix) %>%
   mutate(Cluster = rownames(prob_matrix)) %>%
   pivot_longer(cols = -Cluster, names_to = "State", values_to = "Probability")
 
-# Create a custom color scale where white represents the average probability,
+# Create a color scale where white represents the average probability,
 # blue represents above average, and orange represents below average
 color_scale <- scale_fill_gradient2(
   low = "#D26217",     # Below average
