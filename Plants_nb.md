@@ -216,7 +216,7 @@ ggplot(pca_data, aes(x = PC1, y = PC2, color = Cluster)) +
 
 The plot indicates that the data set does not contain two clearly
 distinct clusters, as it looks more like a single group of points
-split into two parts rather than two isolated clusters.
+split into two parts rather than two isolated groups.
 
 ### Probability Matrix
 
