@@ -224,8 +224,8 @@ In this k-means clustering, we have a vector in 69-dimensional space for
 each cluster. Each element/dimension of a vector corresponds to one of
 the 69 regions. Each element of the vector can be interpreted as the
 probability that a randomly selected plant from that cluster is found in
-the corresponding region. I will create a probability matrix which will
-show all of the information that the vectors contain; the matrix will
+the corresponding region. I will create a probability matrix that
+shows all of the information that the vectors contain; the matrix will
 show one probability value per region per cluster. The purpose of
 creating the matrix from the vectors is to put the information from the
 vectors in a format that is more suitable for building visualizations.
