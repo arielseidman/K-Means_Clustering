@@ -389,8 +389,7 @@ C2](plants_image.png)
 White on the maps represents the average probability of a random plant
 being found in a random region, which is about 0.1248858.
 
-The choropleth maps show blue areas, orange areas, and white areas
-connecting them. This color gradient appears because plant distributions
+The choropleth maps show white areas connecting blue and orange areas. This color gradient appears because plant distributions
 typically change gradually over large geographic areas.
 
 The color transitions are not perfect gradients. Since the data set 
