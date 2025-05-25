@@ -1,3 +1,5 @@
+### Introduction
+
 In this project, I use the k-means clustering algorithm in R to analyze
 the [USDA’s Plants data
 set](https://archive.ics.uci.edu/dataset/180/plants), uncovering
