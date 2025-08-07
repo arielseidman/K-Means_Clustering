@@ -390,7 +390,7 @@ C2](plants_image.png)
 
 White on the maps represents the average probability of a random plant
 being found in a random region, which is about 0.1248858. Orange represents
-values below that, and blue respresents values above.
+values below that, and blue represents values above.
 
 The choropleth maps show white areas connecting blue and orange areas. This 
 color gradient appears because plant distributions
