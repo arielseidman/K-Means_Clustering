@@ -389,9 +389,11 @@ C2](plants_image.png)
 ### Results
 
 White on the maps represents the average probability of a random plant
-being found in a random region, which is about 0.1248858.
+being found in a random region, which is about 0.1248858. Orange represents
+values below that, and blue respresents values above.
 
-The choropleth maps show white areas connecting blue and orange areas. This color gradient appears because plant distributions
+The choropleth maps show white areas connecting blue and orange areas. This 
+color gradient appears because plant distributions
 typically change gradually over large geographic areas.
 
 The color transitions are not perfect gradients. Since the data set 
@@ -402,11 +404,12 @@ plant data by county), the color transitions would be smoother.
 However, even with this state-level and province-level data, 
 neighboring states/provinces still tend to have similar colors.
 
-The color of each region represents the likelihood that a randomly
-selected plant from that cluster is from that region. If a 
+The color of a region indicates how much more (or less) likely it is
+for a plant from that cluster to be found there, compared to the overall
+likelihood of finding a plant from any cluster in that region. If a 
 region is blue, plants from that cluster are more likely to be
-found there than plants on average. Conversely, if a region is 
-orange, plants in that cluster are less likely to be found there.
+found in that region than plants on average. The opposite is true for
+orange regions.
 
 Cluster 1 is mostly orange with some blue in the West and Southwest
 United States, while Cluster 2 is mostly blue with some orange in
