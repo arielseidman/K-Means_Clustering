@@ -421,7 +421,3 @@ The k-means algorithm partially uncovers the geographic relationships
 between the regions: although the data set lacks information about which
 regions border each other, this information is revealed by the plant
 distributions across regions and the clusters identified by k-means.
-
-The main takeaway is that experimentation is important for finding the
-most suitable visual representation of a data set to uncover patterns
-and trends.
