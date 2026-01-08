@@ -421,17 +421,3 @@ The k-means algorithm partially uncovers the geographic relationships
 between the regions: although the data set lacks information about which
 regions border each other, this information is revealed by the plant
 distributions across regions and the clusters identified by k-means.
-
-### Business Relevance
-
-This project shows how structured analysis and visualization can be used 
-to examine patterns and variation within a real-world dataset. Findings 
-from this type of work can support teams in understanding what is happening
-in the data and where differences or irregularities may exist.
-
-The approach used here reflects common analytical tasks in industry settings,
-with an emphasis on clear explanation and readability alongside technical
-execution.
-
-
-
